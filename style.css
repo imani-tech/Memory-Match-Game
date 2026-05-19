@@ -127,6 +127,7 @@ h1 {
 }
 
 .card {
+  width: 100px;
   aspect-ratio: 1;
   border: 1px solid var(--border);
   border-radius: 20px;
