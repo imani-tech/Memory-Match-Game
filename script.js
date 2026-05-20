@@ -5,6 +5,7 @@ const messageText = document.getElementById("messageText");
 const resetBtn = document.getElementById("resetBtn");
 // an array of images
 const cardValues = ["chicken.jpg", "horse.png", "chicken.jpg", "horse.png"];
+// declared variables that will store the clicked image
 let  firstCard  = null
 let secondCard = null
 // looop through my array and display each image in an image tag
@@ -15,12 +16,17 @@ let imageContainer = document.createElement("img")
 imageContainer.classList.add("card")
 // appended it to the game board so it can display
 gameBoard.append(imageContainer)
+
 imageContainer.dataset.image = image;
 // every time the image is clicked you can see whats inside
 imageContainer.addEventListener("click", (event) => {
+    // prevented the page from loading after you click it
     event.preventDefault()
+    // shows the image when clicked
     imageContainer.src = image;
+    // tells me the exact image clicked 
     let clickedCard = event.target;
+    // validates the cards clicked
    if(!firstCard){
        firstCard = clickedCard
     }else(
