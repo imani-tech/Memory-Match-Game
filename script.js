@@ -6,10 +6,11 @@ const resetBtn = document.getElementById("resetBtn");
 // an array of images
 const cardValues = ["chicken.jpg", "horse.png", "chicken.jpg", "horse.png"];
 // looop through my array and display each image in an image tag
-cardValues.forEach(function (image){
+cardValues.forEach(function (image){       
 let imageContainer = document.createElement("img")
-imageContainer.src = image;
 imageContainer.classList.add("card")
 gameBoard.append(imageContainer)
-
+imageContainer.addEventListener("click", (event) => {
+    imageContainer.src = image;
+})
 })
