@@ -34,6 +34,8 @@ imageContainer.addEventListener("click", (event) => {
     )  
      if(firstCard.dataset.image === secondCard.dataset.image){
         messageText.textContent = "You got it 🥳"
+     }else{
+        messageText.textContent = "image didn't match 😔"      
      }   
     
 })
