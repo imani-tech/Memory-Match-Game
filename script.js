@@ -16,7 +16,6 @@ let imageContainer = document.createElement("img")
 imageContainer.classList.add("card")
 // appended it to the game board so it can display
 gameBoard.append(imageContainer)
-
 imageContainer.dataset.image = image;
 // every time the image is clicked you can see whats inside
 imageContainer.addEventListener("click", (event) => {
@@ -27,16 +26,27 @@ imageContainer.addEventListener("click", (event) => {
     // tells me the exact image clicked 
     let clickedCard = event.target;
     // validates the cards clicked
-   if(!firstCard){
-       firstCard = clickedCard
-    }else(
-        secondCard = clickedCard
-    )  
-     if(firstCard.dataset.image === secondCard.dataset.image){
+  if(!firstCard){
+    firstCard = clickedCard
+}else if(!secondCard){
+    secondCard = clickedCard
+}else{
+    return
+}
+    if(firstCard && secondCard){
+
+    if(firstCard.dataset.image === secondCard.dataset.image){
         messageText.textContent = "You got it 🥳"
-     }else{
-        messageText.textContent = "image didn't match 😔"      
-     }   
-    
+        
+    }else{
+        messageText.textContent = "image didn't match 😔"
+    }
+
+}
+    console.log(firstCard)
+    console.log(secondCard)   
+   
+
 })
 })
+
