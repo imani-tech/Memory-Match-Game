@@ -24,18 +24,18 @@ imageContainer.dataset.image = image;
 // every time the image is clicked you can see whats inside
 imageContainer.addEventListener("click", function imagdisplay(event) {
     // prevented the page from loading after you click it
-    event.preventDefault()    
+    event.preventDefault()   
+    // It stops the user clicking when it is true 
     if(lockBoard){
         return
-    } 
-    
-    // shows the image when clicked   
+    }       
     // tells me the exact image clicked 
-
     let clickedCard = event.target;
+    // makes sure no clicking the same image
     if (clickedCard === firstCard){
         return
     } 
+    // shows the image when clicked 
     clickedCard.src = clickedCard.dataset.image; 
          
     // validates the cards clicked
@@ -44,11 +44,11 @@ imageContainer.addEventListener("click", function imagdisplay(event) {
     return
 }else if(!secondCard){
     secondCard = clickedCard;
+    // stoped the image from showing when clicking
     lockBoard = true;
 }else{
     return
 }
-
     if(firstCard && secondCard){
 
     if(firstCard.dataset.image === secondCard.dataset.image){
@@ -61,11 +61,7 @@ imageContainer.addEventListener("click", function imagdisplay(event) {
     secondCard = null
 
 }
-
-
-
 })
-
 })
 lockBoard = false;
-console.log(lockBoard)
+
