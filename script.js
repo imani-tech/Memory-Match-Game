@@ -9,6 +9,7 @@ const cardValues = ["chicken.jpg", "horse.png", "chicken.jpg", "horse.png"];
 let  firstCard  = null
 let secondCard = null
 let lockBoard = false;
+let hideImage = false
 // looop through my array and display each image in an image tag
 cardValues.forEach(function (image){  
  //  created an image tag
@@ -17,8 +18,9 @@ let imageContainer = document.createElement("img")
 imageContainer.classList.add("card")
 // appended it to the game board so it can display
 gameBoard.append(imageContainer)
+// stores some information on the HTML element.
 imageContainer.dataset.image = image;
-
+imageContainer.src = "download (4).jpg" 
 // **********************Event listener***************
 
 // every time the image is clicked you can see whats inside
@@ -28,7 +30,8 @@ imageContainer.addEventListener("click", function imagdisplay(event) {
     // It stops the user clicking when it is true 
     if(lockBoard){
         return
-    }       
+    }    
+       
     // tells me the exact image clicked 
     let clickedCard = event.target;
     // makes sure no clicking the same image
@@ -55,13 +58,25 @@ imageContainer.addEventListener("click", function imagdisplay(event) {
         messageText.textContent = "You got it 🥳"
         
     }else{
-        messageText.textContent = "image didn't match 😔"                  
-    }
-    firstCard = null
-    secondCard = null
+        messageText.textContent = "image didn't match 😔"        
+        }   
+        if(firstCard.dataset.image !== secondCard.dataset.image){
+            setTimeout(() => {
+                 firstCard.src = "download (4).jpg"
+                secondCard.src = "download (4).jpg"  
 
+                 firstCard = null
+                 secondCard = null  
+                 lockBoard = false;
+                  messageText.textContent = "Please try again👍"   
+            }, 2000)
+        }
+   
 }
-})
-})
-lockBoard = false;
 
+})
+})
+
+resetBtn.addEventListener("click", () => {
+    
+})
