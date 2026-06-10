@@ -11,10 +11,7 @@ let secondCard = null
 let lockBoard = false;
 let hideImage = false
 let moves = 0;
-let selectedCards = {
-  firstCard: null,
-  secondCard: null
-};
+let selectedCards = []; 
 // looop through my array and display each image in an image tag
 cardValues.forEach(function (image){  
  //  created an image tag
@@ -46,23 +43,31 @@ imageContainer.addEventListener("click", function imagdisplay(event) {
     // shows the image when clicked 
     clickedCard.src = clickedCard.dataset.image; 
 
-    selectedCards.firstCard = clickedCard
-    selectedCards.secondCard = clickedCard
-    if(selectedCards){
-       moves++
-       movesText.textContent = moves
-    }     
+   
+       
     // validates the cards clicked
   if(!firstCard){
     firstCard = clickedCard;
+    // after the first card is selcted its stored in selectedCards array
+    selectedCards.push(firstCard)
     return
 }else if(!secondCard){
     secondCard = clickedCard;
+    // after the second card is selcted its stored in selectedCards array
+    selectedCards.push(secondCard)
     // stoped the image from showing when clicking
     lockBoard = true;
 }else{
     return
 }
+// makes sure to count moves after 2 images are selected
+console.log(selectedCards)
+ if(selectedCards.length>= 2){
+       moves++
+       movesText.textContent = moves
+    } 
+
+
     if(firstCard && secondCard){
 
     if(firstCard.dataset.image === secondCard.dataset.image){
@@ -71,7 +76,8 @@ imageContainer.addEventListener("click", function imagdisplay(event) {
             messageText.textContent = "Find the next one 👏"
             firstCard = null
             secondCard = null 
-            lockBoard = false;            
+            lockBoard = false;  
+            return          
         }, 1500);
        
     }else{
