@@ -12,6 +12,8 @@ let lockBoard = false;
 let hideImage = false
 let moves = 0;
 let selectedCards = []; 
+// keeps truck of the selected equal images
+let SELECTED_IMG_EQUAL = [];
 // looop through my array and display each image in an image tag
 cardValues.forEach(function (image){  
  //  created an image tag
@@ -61,28 +63,37 @@ imageContainer.addEventListener("click", function imagdisplay(event) {
     return
 }
 // makes sure to count moves after 2 images are selected
-console.log(selectedCards)
+
  if(selectedCards.length>= 2){
        moves++
        movesText.textContent = moves
     } 
-
-
+    // validates if the two images selected are equal
     if(firstCard && secondCard){
 
     if(firstCard.dataset.image === secondCard.dataset.image){
         messageText.textContent = "You got it 🥳"
-        setTimeout(() => {
-            messageText.textContent = "Find the next one 👏"
+        // keeps truck of the selected equal images
+        SELECTED_IMG_EQUAL.push(firstCard, secondCard)
+        console.log(SELECTED_IMG_EQUAL)
+         
+       
+    } else{
+        messageText.textContent = "Image didn't match 😔"        
+        }
+      
+        if(SELECTED_IMG_EQUAL.length === 2){
+            setTimeout(() => {
+            messageText.textContent = "Find the next one 😉👍"
             firstCard = null
             secondCard = null 
             lockBoard = false;  
             return          
-        }, 1500);
-       
-    }else{
-        messageText.textContent = "image didn't match 😔"        
-        }   
+        }, 1500);            
+        }else{
+           messageText.textContent = "Congrates you found them all🎉👏"  
+        }
+        
         if(firstCard.dataset.image !== secondCard.dataset.image){
             setTimeout(() => {
                  firstCard.src = "download (4).jpg"
