@@ -206,3 +206,6 @@ h1 {
     border-radius: 16px;
   }
 }
+.open-image-locker{
+  pointer-events: none;
+}
