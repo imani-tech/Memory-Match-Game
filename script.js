@@ -15,8 +15,6 @@ let selectedCards = [];
 
 // keeps truck of the selected equal images
 let SELECTED_IMG_EQUAL = [];
-
-
 // looop through my array and display each image in an image tag
 cardValues.forEach(function (image){  
     //  created an image tag
@@ -57,12 +55,10 @@ imageContainer.addEventListener("click", function imagdisplay(event) {
         // after the second card is selcted its stored in selectedCards array
         selectedCards.push(secondCard)
         // stoped the image from showing when clicking
-        lockBoard = true;
-        
+        lockBoard = true;        
     }
 // makes sure to count moves after 2 images are selected
-
-    if(selectedCards.length>= 2){
+    if(selectedCards.length >= 2){
         moves++
         movesText.textContent = moves
     } 
@@ -75,9 +71,7 @@ imageContainer.addEventListener("click", function imagdisplay(event) {
         SELECTED_IMG_EQUAL.push(firstCard, secondCard)
          // to aviod already selected images to be clicked again
         firstCard.classList.add("open-image-locker") 
-        secondCard.classList.add("open-image-locker")
-         console.log(SELECTED_IMG_EQUAL)   
-         
+        secondCard.classList.add("open-image-locker")        
     } else{
         messageText.textContent = "Image didn't match 😔"        
         }
@@ -90,9 +84,7 @@ imageContainer.addEventListener("click", function imagdisplay(event) {
             lockBoard = false;  
             return          
         }, 1500);            
-        }       
-        // to aviod already selected images to be clicked again
-        
+        }          
         if(firstCard.dataset.image !== secondCard.dataset.image){
             setTimeout(() => {
                 firstCard.src = "download (4).jpg"
@@ -105,13 +97,9 @@ imageContainer.addEventListener("click", function imagdisplay(event) {
             }, 1500)
         }   
     }
-     
+  
+})   
 })
-})
-
 resetBtn.addEventListener("click", () => {
     
 })
-function lockOpenImgs(){
-    lockBoard = true
-}
