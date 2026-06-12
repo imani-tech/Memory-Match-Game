@@ -4,7 +4,7 @@ const matchesText = document.getElementById("matchesText");
 const messageText = document.getElementById("messageText");
 const resetBtn = document.getElementById("resetBtn");
 // an array of images
-const cardValues = ["chicken.jpg", "horse.png", "chicken.jpg", "horse.png"];
+const cardValues = ["chicken.jpg", "horse.png", "chicken.jpg", "horse.png", "cat photo.jpg", "dog photo.jpg", "cat photo.jpg", "dog photo.jpg"];
 // declared variables that will store the clicked image
 let  firstCard  = null
 let secondCard = null
