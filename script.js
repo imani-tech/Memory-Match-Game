@@ -12,7 +12,7 @@ let lockBoard = false;
 let hideImage = false
 let moves = 0;
 let selectedCards = []; 
-
+cardValues.sort(() => Math.random() - 0.5)
 // keeps truck of the selected equal images
 let SELECTED_IMG_EQUAL = [];
 // looop through my array and display each image in an image tag
@@ -75,23 +75,39 @@ imageContainer.addEventListener("click", function imagdisplay(event) {
         secondCard.classList.add("open-image-locker");             
     } else{
         messageText.textContent = "Image didn't match 😔";  
-        SELECTED_IMG_EQUAL = [];      
+              
         }
-      
+       console.log(SELECTED_IMG_EQUAL.length)
     //   after the first two images are selected enable selection of the rest  
         if(SELECTED_IMG_EQUAL.length === 8){ 
             messageText.textContent = "congrats🎉 you found them all🎊👏";
-            SELECTED_IMG_EQUAL = []
-            firstCard = null;
-            secondCard = null
+           
+            setTimeout(() => {
+            const allCards = document.querySelectorAll(".card");
+            cardValues.sort(() => Math.random() - 0.5)
+            allCards.forEach((card, index)=>{
+            card.dataset.image = cardValues[index];    
+            card.src = "download (4).jpg"
+           card.classList.remove("open-image-locker");                        
+            lockBoard = false            
+            })               
+         SELECTED_IMG_EQUAL = [];
+        selectedCards = [];
+        firstCard = null;
+        secondCard = null;
+        lockBoard = false;
+            }, 1500);
+           
+           
+           
+           
         }else{  
             if(SELECTED_IMG_EQUAL.length >= 2){          
             setTimeout(() => {
             messageText.textContent = "Find the next one 😉👍";
             firstCard = null;
             secondCard = null; 
-            lockBoard = false;  
-            console.log(SELECTED_IMG_EQUAL)            
+            lockBoard = false;                         
              return;     
         }, 1500);   
     }                
@@ -110,8 +126,20 @@ imageContainer.addEventListener("click", function imagdisplay(event) {
         }; 
         };   
     }   
-})   
-})
+}) 
+
 resetBtn.addEventListener("click", () => {
+   reset()
+})
+ function reset(){
+     imageContainer.src = "download (4).jpg" ;
+      messageText.textContent = ""
+    selectedCards = []; 
+    SELECTED_IMG_EQUAL = []; 
+    firstCard = null;
+    secondCard = null;
+    lockBoard = false
     
+    cardValues.sort(() => Math.random() - 0.5)
+} 
 })
