@@ -79,7 +79,13 @@ imageContainer.addEventListener("click", function imagdisplay(event) {
         }
       
     //   after the first two images are selected enable selection of the rest  
-        if(SELECTED_IMG_EQUAL.length >= 2){            
+        if(SELECTED_IMG_EQUAL.length === 8){ 
+            messageText.textContent = "congrats🎉 you found them all🎊👏";
+            SELECTED_IMG_EQUAL = []
+            firstCard = null;
+            secondCard = null
+        }else{  
+            if(SELECTED_IMG_EQUAL.length >= 2){          
             setTimeout(() => {
             messageText.textContent = "Find the next one 😉👍";
             firstCard = null;
@@ -87,11 +93,10 @@ imageContainer.addEventListener("click", function imagdisplay(event) {
             lockBoard = false;  
             console.log(SELECTED_IMG_EQUAL)            
              return;     
-        }, 1500);                   
-        }; 
-         if(SELECTED_IMG_EQUAL.length === 8){
-            messageText.textContent = "congrats🎉 you found them all🎊👏";
-         };   
+        }, 1500);   
+    }                
+        
+        
         if(firstCard.dataset.image !== secondCard.dataset.image){
             setTimeout(() => {
                 messageText.textContent = "Please try again👍" ; 
@@ -101,7 +106,8 @@ imageContainer.addEventListener("click", function imagdisplay(event) {
                 secondCard = null;                  
                 lockBoard = false;
                 
-            }, 1100)
+            }, 1500)
+        }; 
         };   
     }   
 })   
