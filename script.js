@@ -17,8 +17,7 @@ let SELECTED_IMG_EQUAL = [];
 // looop through my array and display each image in an image tag
 cardValues.forEach(function (image){     
     let imageContainer = document.createElement("img");  
-    imageContainer.classList.add("card");
-    // appended it to the game board so it can display
+    imageContainer.classList.add("card");    
     gameBoard.append(imageContainer);
     // stores some information on the HTML element.
     imageContainer.dataset.image = image;
@@ -66,18 +65,15 @@ imageContainer.addEventListener("click", function imagdisplay(event) {
     if(firstCard.dataset.image === secondCard.dataset.image){
         messageText.textContent = "You got it 🥳";
         // keeps truck of the selected equal images
-        SELECTED_IMG_EQUAL.push(firstCard, secondCard);
-         // to aviod already selected images to be clicked again
-        
+        SELECTED_IMG_EQUAL.push(firstCard, secondCard);        
         setTimeout(() => {
-            messageText.textContent = "Find the next one 😉👍"
-            firstCard.classList.add("open-image-locker"); 
+        messageText.textContent = "Find the next one 😉👍"
+        firstCard.classList.add("open-image-locker"); 
         secondCard.classList.add("open-image-locker");
         firstCard = null;
         secondCard = null;                  
         lockBoard = false
-        }, 1000);
-                    
+        }, 1000);                    
     } else{
         messageText.textContent = "Image didn't match 😔";
          setTimeout(() => {
@@ -88,14 +84,12 @@ imageContainer.addEventListener("click", function imagdisplay(event) {
                 secondCard = null;                  
                 lockBoard = false;
                 
-            }, 1500)  
-              
+            }, 1500)               
         }
        console.log(SELECTED_IMG_EQUAL.length)
     //   after the first two images are selected enable selection of the rest  
         if(SELECTED_IMG_EQUAL.length === 8){               
-              messageText.textContent = "congrats🎉 you found them all🎊👏";
-           
+            messageText.textContent = "congrats🎉 you found them all🎊👏";           
             setTimeout(() => {            
                 reset()        
             }, 1500);         
@@ -104,21 +98,21 @@ imageContainer.addEventListener("click", function imagdisplay(event) {
 }) 
 })
 function reset(){
-      const allCards = document.querySelectorAll(".card");
-            cardValues.sort(() => Math.random() - 0.5)
-            allCards.forEach((card, index)=>{
-            card.dataset.image = cardValues[index];    
-            card.src = "download (4).jpg"
-            card.classList.remove("open-image-locker");                        
-            lockBoard = false 
-            SELECTED_IMG_EQUAL = [];
-            selectedCards = [];
-             firstCard = null;
-            secondCard = null;
-            lockBoard = false;
-            moves = 0
-            movesText.textContent = moves  
-             messageText.textContent = ""    
+    const allCards = document.querySelectorAll(".card");
+    cardValues.sort(() => Math.random() - 0.5)
+    allCards.forEach((card, index)=>{
+    card.dataset.image = cardValues[index];    
+    card.src = "download (4).jpg"
+    card.classList.remove("open-image-locker");                        
+    lockBoard = false 
+    SELECTED_IMG_EQUAL = [];
+    selectedCards = [];
+     firstCard = null;
+    secondCard = null;
+    lockBoard = false;
+    moves = 0
+    movesText.textContent = moves  
+     messageText.textContent = ""    
 } )
 }
  resetBtn.addEventListener("click", () => {
