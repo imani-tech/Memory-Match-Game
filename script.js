@@ -53,8 +53,7 @@ imageContainer.addEventListener("click", function imagdisplay(event) {
         selectedCards.push(secondCard);
         // stoped the image from showing when clicking
         lockBoard = true;        
-    }; 
-   
+    };   
 // makes sure to count moves after 2 images are selected
     if(selectedCards.length >= 2){
         moves++;
@@ -88,10 +87,9 @@ imageContainer.addEventListener("click", function imagdisplay(event) {
                 lockBoard = false;
                 
             }, 1500)               
-        }
-       console.log(SELECTED_IMG_EQUAL.length)
+        }   
     //   after the first two images are selected enable selection of the rest  
-        if(SELECTED_IMG_EQUAL.length === 8){               
+        if(SELECTED_IMG_EQUAL.length === 8){                          
             messageText.textContent = "congrats🎉 you found them all🎊👏";           
             setTimeout(() => {            
                 reset()        
