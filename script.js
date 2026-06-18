@@ -12,7 +12,7 @@ let lockBoard = false;
 let moves = 0;
 let selectedCards = []; 
 let matches = 0
-// cardValues.sort(() => Math.random() - 0.5)
+cardValues.sort(() => Math.random() - 0.5)
 // keeps truck of the selected equal images
 let SELECTED_IMG_EQUAL = [];
 // looop through my array and display each image in an image tag
@@ -78,7 +78,7 @@ imageContainer.addEventListener("click", function imagdisplay(event) {
         }, 1000);                    
     } else{
         messageText.textContent = "Image didn't match 😔";
-         setTimeout(() => {
+        setTimeout(() => {
                 messageText.textContent = "Please try again👍" ; 
                 firstCard.src = "download (4).jpg";
                 secondCard.src = "download (4).jpg";  
@@ -114,10 +114,10 @@ function reset(){
     moves = 0
     movesText.textContent = moves  
     messageText.textContent = "" 
-    matches = 0   
+    matches = 0 
+    matchesText.textContent = `${matches} / 4`  
 } )
 }
- resetBtn.addEventListener("click", () => {
- reset()
-})
- 
+resetBtn.addEventListener("click", () => {
+reset()
+}) 
