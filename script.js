@@ -9,17 +9,14 @@ const cardValues = ["chicken.jpg", "horse.png", "chicken.jpg", "horse.png", "cat
 let  firstCard  = null;
 let secondCard = null;
 let lockBoard = false;
-let hideImage = false
 let moves = 0;
 let selectedCards = []; 
 // cardValues.sort(() => Math.random() - 0.5)
 // keeps truck of the selected equal images
 let SELECTED_IMG_EQUAL = [];
 // looop through my array and display each image in an image tag
-cardValues.forEach(function (image){  
-    //  created an image tag
-    let imageContainer = document.createElement("img");
-    //gave it a class list 
+cardValues.forEach(function (image){     
+    let imageContainer = document.createElement("img");  
     imageContainer.classList.add("card");
     // appended it to the game board so it can display
     gameBoard.append(imageContainer);
@@ -96,43 +93,35 @@ imageContainer.addEventListener("click", function imagdisplay(event) {
         }
        console.log(SELECTED_IMG_EQUAL.length)
     //   after the first two images are selected enable selection of the rest  
-        if(SELECTED_IMG_EQUAL.length === 8){ 
-            messageText.textContent = "congrats🎉 you found them all🎊👏";
+        if(SELECTED_IMG_EQUAL.length === 8){               
+              messageText.textContent = "congrats🎉 you found them all🎊👏";
            
-            setTimeout(() => {
-            const allCards = document.querySelectorAll(".card");
+            setTimeout(() => {            
+                reset()        
+            }, 1500);         
+        };   
+    }   
+}) 
+})
+function reset(){
+      const allCards = document.querySelectorAll(".card");
             cardValues.sort(() => Math.random() - 0.5)
             allCards.forEach((card, index)=>{
             card.dataset.image = cardValues[index];    
             card.src = "download (4).jpg"
             card.classList.remove("open-image-locker");                        
-            lockBoard = false            
-            })               
-        SELECTED_IMG_EQUAL = [];
-        selectedCards = [];
-        firstCard = null;
-        secondCard = null;
-        lockBoard = false;
-            }, 1500);
-    //       
-        };   
-    }   
-}) 
-
-
-})
-function reset(){
-     imageContainer.src = "download (4).jpg" ;
-      messageText.textContent = ""
-    selectedCards = []; 
-    SELECTED_IMG_EQUAL = []; 
-    firstCard = null;
-    secondCard = null;
-    lockBoard = false
-    
-    cardValues.sort(() => Math.random() - 0.5)
+            lockBoard = false 
+            SELECTED_IMG_EQUAL = [];
+            selectedCards = [];
+             firstCard = null;
+            secondCard = null;
+            lockBoard = false;
+            moves = 0
+            movesText.textContent = moves  
+             messageText.textContent = ""    
+} )
 }
  resetBtn.addEventListener("click", () => {
-   reset()
+ reset()
 })
  
