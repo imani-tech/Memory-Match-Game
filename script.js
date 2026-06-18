@@ -12,7 +12,7 @@ let lockBoard = false;
 let hideImage = false
 let moves = 0;
 let selectedCards = []; 
-cardValues.sort(() => Math.random() - 0.5)
+// cardValues.sort(() => Math.random() - 0.5)
 // keeps truck of the selected equal images
 let SELECTED_IMG_EQUAL = [];
 // looop through my array and display each image in an image tag
@@ -71,10 +71,27 @@ imageContainer.addEventListener("click", function imagdisplay(event) {
         // keeps truck of the selected equal images
         SELECTED_IMG_EQUAL.push(firstCard, secondCard);
          // to aviod already selected images to be clicked again
-        firstCard.classList.add("open-image-locker"); 
-        secondCard.classList.add("open-image-locker");             
+        
+        setTimeout(() => {
+            messageText.textContent = "Find the next one 😉👍"
+            firstCard.classList.add("open-image-locker"); 
+        secondCard.classList.add("open-image-locker");
+        firstCard = null;
+        secondCard = null;                  
+        lockBoard = false
+        }, 1000);
+                    
     } else{
-        messageText.textContent = "Image didn't match 😔";  
+        messageText.textContent = "Image didn't match 😔";
+         setTimeout(() => {
+                messageText.textContent = "Please try again👍" ; 
+                firstCard.src = "download (4).jpg";
+                secondCard.src = "download (4).jpg";  
+                firstCard = null;
+                secondCard = null;                  
+                lockBoard = false;
+                
+            }, 1500)  
               
         }
        console.log(SELECTED_IMG_EQUAL.length)
@@ -88,50 +105,23 @@ imageContainer.addEventListener("click", function imagdisplay(event) {
             allCards.forEach((card, index)=>{
             card.dataset.image = cardValues[index];    
             card.src = "download (4).jpg"
-           card.classList.remove("open-image-locker");                        
+            card.classList.remove("open-image-locker");                        
             lockBoard = false            
             })               
-         SELECTED_IMG_EQUAL = [];
+        SELECTED_IMG_EQUAL = [];
         selectedCards = [];
         firstCard = null;
         secondCard = null;
         lockBoard = false;
             }, 1500);
-           
-           
-           
-           
-        }else{  
-            if(SELECTED_IMG_EQUAL.length >= 2){          
-            setTimeout(() => {
-            messageText.textContent = "Find the next one 😉👍";
-            firstCard = null;
-            secondCard = null; 
-            lockBoard = false;                         
-             return;     
-        }, 1500);   
-    }                
-        
-        
-        if(firstCard.dataset.image !== secondCard.dataset.image){
-            setTimeout(() => {
-                messageText.textContent = "Please try again👍" ; 
-                firstCard.src = "download (4).jpg";
-                secondCard.src = "download (4).jpg";  
-                firstCard = null;
-                secondCard = null;                  
-                lockBoard = false;
-                
-            }, 1500)
-        }; 
+    //       
         };   
     }   
 }) 
 
-resetBtn.addEventListener("click", () => {
-   reset()
+
 })
- function reset(){
+function reset(){
      imageContainer.src = "download (4).jpg" ;
       messageText.textContent = ""
     selectedCards = []; 
@@ -141,5 +131,8 @@ resetBtn.addEventListener("click", () => {
     lockBoard = false
     
     cardValues.sort(() => Math.random() - 0.5)
-} 
+}
+ resetBtn.addEventListener("click", () => {
+   reset()
 })
+ 
