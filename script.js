@@ -11,6 +11,7 @@ let secondCard = null;
 let lockBoard = false;
 let moves = 0;
 let selectedCards = []; 
+let matches = 0
 // cardValues.sort(() => Math.random() - 0.5)
 // keeps truck of the selected equal images
 let SELECTED_IMG_EQUAL = [];
@@ -63,6 +64,8 @@ imageContainer.addEventListener("click", function imagdisplay(event) {
     // validates if the two images selected are equal
     if(firstCard && secondCard){
     if(firstCard.dataset.image === secondCard.dataset.image){
+        matches++
+        matchesText.textContent = `${matches} / 4`
         messageText.textContent = "You got it 🥳";
         // keeps truck of the selected equal images
         SELECTED_IMG_EQUAL.push(firstCard, secondCard);        
@@ -107,12 +110,13 @@ function reset(){
     lockBoard = false 
     SELECTED_IMG_EQUAL = [];
     selectedCards = [];
-     firstCard = null;
+    firstCard = null;
     secondCard = null;
     lockBoard = false;
     moves = 0
     movesText.textContent = moves  
-     messageText.textContent = ""    
+    messageText.textContent = "" 
+    matches = 0   
 } )
 }
  resetBtn.addEventListener("click", () => {
